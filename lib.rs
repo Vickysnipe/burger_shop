@@ -292,8 +292,7 @@ mod tests {
     fn order_and_payment_works() {
         let mut shop = BurgerShop::new();
         // test customer acct
-        let customer_account =
-            ink::env::test::default_accounts::<ink::env::DefaultEnvironment>();
+        let customer_account = ink::env::test::default_accounts::<ink::env::DefaultEnvironment>();
 
         // // set test tokens into acct
         // ink::env::test::set_account_balance::<ink::env::DefaultEnvironment>(customer_account.bob, 100);
@@ -320,12 +319,14 @@ mod tests {
         };
 
         ink::env::test::set_value_transferred::<DefaultEnvironment>(30);
-        let bob_after = ink::env::test::get_account_balance::<DefaultEnvironment>(customer_account.bob);
+        let bob_after =
+            ink::env::test::get_account_balance::<DefaultEnvironment>(customer_account.bob);
         dbg!(bob_after);
 
         ink::env::test::set_caller::<DefaultEnvironment>(customer_account.alice);
 
-        let alice_initial = ink::env::test::get_account_balance::<DefaultEnvironment>(customer_account.alice);
+        let alice_initial =
+            ink::env::test::get_account_balance::<DefaultEnvironment>(customer_account.alice);
 
         dbg!(alice_initial.expect("err"));
         //    assert!(initial_bal == 970_u128);
@@ -334,9 +335,9 @@ mod tests {
             ink::env::test::callee::<DefaultEnvironment>(),
             customer_account.bob
         );
-        let alice_after = ink::env::test::get_account_balance::<DefaultEnvironment>(customer_account.alice);
+        let alice_after =
+            ink::env::test::get_account_balance::<DefaultEnvironment>(customer_account.alice);
         dbg!(alice_after.expect("err"));
-        
 
         // shop.take_order_and_payment(vec![food_items]).expect("something went wrong");
     }
